@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/grid.css">
+    <link rel="stylesheet" href="../static/css/Main.css">
+    <title>GameplayPA</title>
+</head>
+<body>
+    <div id="container">
+    {% for i in lista %}
+        <div class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" onmouseover="">
+            {% if i.nota > 6 %}
+            <div style="color: rgb(57, 199, 57);">
+                {{ i.nota }}
+            </div>
+            {% else %}
+            <div style="color: rgb(192, 54, 54);">
+                {{ i.nota }}
+            </div>
+            {% endif %}
+            <div class="content">
+                <h3>{{i.name}}</h3>
+                <p>{{i.infoText}}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+    </div>
+</body>
+</html>

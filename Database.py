@@ -3,16 +3,16 @@ import pymysql
 class Database:
     def __init__(self, hostname,admin,password,database_name):
         self.db = pymysql.connect(hostname,admin,password,database_name)
-        self.cursor = db.cursor()
+        self.cursor = self.db.cursor()
 
-    def update(self):
+    def update(self,table,where,new):
         pass
 
-    def alterTable(self):
+    def read(self,table,where):
         pass
 
-    def insertInto(self):
+    def insertInto(self,table,columns=[],values=[]):
         pass
 
-    def remove(self):
+    def remove(self,table,where):
         pass
