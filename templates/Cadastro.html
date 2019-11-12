@@ -11,9 +11,13 @@
 <body>
     <div id='container'>
         <form action="cadastrar" method="POST" enctype="multipart/form-data">
-            <input type="text" name="name">
-            <input type="number" name="nota">
-            <input type="text" name="infoText">
+            <label for="name">Game Name</label>
+            <input type="text" name="name" placeholder="Game name">
+            <label for="nota">Game Grade</label>
+            <input type="number" name="nota" placeholder="Game grade" min=0 max="10">
+            <label for="infoText">Game Description</label>
+            <input type="text" name="infoText" placeholder="Description">
+            <label for="img">Game Thumbnail</label>
             <input type="file" name="img">
             <button type="submit">Cadastrar</button>
         </form>

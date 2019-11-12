@@ -12,18 +12,18 @@
     <div id="container">
     {% for i in lista %}
         <div class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" onmouseover="">
-            {% if i.nota > 6 %}
-            <div style="color: rgb(57, 199, 57);">
-                {{ i.nota }}
-            </div>
-            {% else %}
-            <div style="color: rgb(192, 54, 54);">
-                {{ i.nota }}
-            </div>
-            {% endif %}
             <div class="content">
                 <h3>{{i.name}}</h3>
                 <p>{{i.infoText}}</p>
+                {% if i.nota > 6 %}
+                <div class="nota" style="color: rgb(57, 199, 57);">
+                    {{ i.nota }}
+                </div>
+                {% else %}
+                <div class="nota" style="color: rgb(192, 54, 54);">
+                    {{ i.nota }}
+                </div>
+                {% endif %}
             </div>
         </div>
 
