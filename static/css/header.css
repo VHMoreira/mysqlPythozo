@@ -1,0 +1,27 @@
+header{
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+header p{
+    font-family: fantasy;
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    width: 80%;
+}
+
+header a{
+    border: 1px solid white;
+    width: 100px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 10px;
+}

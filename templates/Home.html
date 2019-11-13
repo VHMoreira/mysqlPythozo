@@ -6,9 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../static/css/grid.css">
     <link rel="stylesheet" href="../static/css/Main.css">
+    <link rel="stylesheet" href="../static/css/header.css">
     <title>GameplayPA</title>
 </head>
 <body>
+    <header>
+        <p>GameplayPA</p><a href="/login">Sign in</a>
+    </header>
     <div id="container">
     {% for i in lista %}
         <div class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" onmouseover="">

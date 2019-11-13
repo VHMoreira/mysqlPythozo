@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/editList.css">
+    <link rel="stylesheet" href="../static/css/Admin.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/footer.css">
+    <title>GameplayPA</title>
+</head>
+<body>
+    <header>
+        <p>GameplayPA</p><a href="/logout">Log out</a>
+    </header>
+    <div id="container" >
+    {% for i in lista %}
+        <form class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" method="POST">
+            <div class="content">
+                <input type="text" name="id" value={{i.index}} style="display: none;">
+                {% if i.nota > 6 %}
+                <input type="number" class="nota" name="nota" style="color: rgb(57, 199, 57);" value={{i.nota}} />
+                {% else %}
+                <input type="number" class="nota" name="nota" style="color: rgb(192, 54, 54);" value={{i.nota}} />
+                {% endif %}
+                <input type="text" name="name" value={{i.name}}>
+                <textarea name="infoText">{{i.infoText}}</textarea>
+                <div>
+                    <button formaction="/admin/delete" type="submit">X</button>
+                    <button formaction='/admin/update' type="submit">E</button>
+                </div>
+            </div>
+
+        </form>
+    {% endfor %}
+    </div>
+    <footer>
+        <a href="/admin/cadastro">Adicionar</a>
+    </footer>
+</body>
+</html>

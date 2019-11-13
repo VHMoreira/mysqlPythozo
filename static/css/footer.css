@@ -1,0 +1,22 @@
+footer{
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 93%;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+
+footer a{
+    width: 200px;
+    height: 75px;
+    color: white;
+    border: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
