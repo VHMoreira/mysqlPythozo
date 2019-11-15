@@ -1,6 +1,6 @@
 class Jogo:
-    def __init__(self,index ,name,nota,src, infoText):
-        self.index = index
+    def __init__(self, name, nota, id, src, infoText):
+        self.id = id
         self.name = name
         self.nota = nota
         self.src = src
