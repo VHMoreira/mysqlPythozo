@@ -10,7 +10,6 @@ bd.criarTabela()
 
 app = Flask(__name__)
 upload_folder = 'static/upload'
-jogos = []
 val = {'access':False}
 
 @app.route('/',methods=['GET'])
@@ -37,6 +36,7 @@ def logout():
 @app.route('/admin',methods=['GET'])
 def admin():
     jogos = bd.readTabela()
+    print(jogos)
     return render_template('Admin.html',lista=jogos)
 
 @app.route('/login/validation',methods=['POST'])
@@ -71,33 +71,25 @@ def cadastrar():
     table.append(src)
     table.append(infoText)
 
-    print(table)
-
     bd.insertInto(table) #insere no BD
-
-    jogo = Jogo(index,name,int(nota),src,infoText)
-    jogos.append(jogo)
     return redirect('/admin')
 
 
 @app.route('/admin/delete',methods=['POST']) #passar para bd, nao esta funcionando
 def delete():
     index = request.form['id']
-    for i in range(0,len(jogos)):
-        if int(index) == int(jogos[i].index):
-            jogos.pop(i)
+    bd.remove(index)
     
     return redirect('/admin')
 
 @app.route('/admin/update',methods=['POST']) #atualizar bd
 def update():
     index = request.form['id']
-    for i in range(0,len(jogos)):
-        if int(index) == int(jogos[i].index):
-            jogos[i].name = request.form['name']
-            jogos[i].nota = int(request.form['nota'])
-            jogos[i].infoText = request.form['infoText']
-            print(jogos[i].infoText)
+    name = request.form['name']
+    nota = request.form['nota']
+    infoText = request.form['infoText']
+    table =[name,nota,infoText]
+    bd.update(table,index)
     
     return redirect('/admin')
 

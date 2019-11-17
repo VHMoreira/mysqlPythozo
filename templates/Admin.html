@@ -18,7 +18,7 @@
     {% for i in lista %}
         <form class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" method="POST">
             <div class="content">
-                <input type="text" name="id" value={{i.index}} style="display: none;">
+                <input type="text" name="id" value={{i.id}} style="display: none;">
                 {% if i.nota > 6 %}
                 <input type="number" class="nota" name="nota" style="color: rgb(57, 199, 57);" value={{i.nota}} />
                 {% else %}
