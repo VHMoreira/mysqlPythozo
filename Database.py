@@ -10,13 +10,18 @@ class Database:
         cursor = db.cursor()
         try:
             for i in range(0,len(aux)):
-                sql = 'UPDATE Jogos SET {} = "{}" WHERE id = {}'.format(aux[i],table[i],where)
+                if(i == 0 or i ==2):
+                    sql = 'UPDATE Jogos SET {} = "{}" WHERE id = {}'.format(aux[i], table[i], where)
+                elif(i == 1):
+                    sql = 'UPDATE Jogos SET {} = {} WHERE id = {}'.format(aux[i], table[i], where)
                 print(sql)
                 cursor.execute(sql)
             db.commit()
             db.close()
+            print("UPDATE FEITO")
         except:
             db.rollback()
+            print("ERRO NO UPDATE")
 
     def readTabela(self):
         db = pymysql.connect("db4free.net","alvarozao","fe7924d3","testesbancao5")
@@ -27,7 +32,8 @@ class Database:
         try:
             cursor.execute(sql)
             resultado = cursor.fetchall()
-            i = 0
+            print(resultado)
+            i = 0 # usar i como id possivelmente
             for linha in resultado:
                 i += 1
                 nome = linha[0]
@@ -49,7 +55,7 @@ class Database:
         db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
         cursor = db.cursor()
         try:
-            cursor.execute('INSERT INTO Jogos VALUES ("{}","{}","{}","{}","{}")'.format(table[0],table[1],table[2],table[3],table[4]))
+            cursor.execute('INSERT INTO Jogos (name,nota,srcImage,informacao) VALUES ("{}",{},"{}","{}")'.format(table[0],table[1],table[3],table[4]))
             db.commit()
             db.close()
             print("inseriu no bd")
@@ -70,15 +76,15 @@ class Database:
             print("ERRO NA REMOÇÃO")
             db.rollback()
 
-    def criarTabela(self):
-        db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
-        cursor = db.cursor()
-        cursor.execute("""CREATE TABLE IF NOT EXISTS Jogos (
-        name CHAR(30),
-        nota INT,
-        id CHAR(50),
-        srcImage CHAR(100),
-        informacao CHAR(200)
-        );""")  #deleta tabela sempre que executado
-    
-        db.close()
+    # def criarTabela(self):
+    #     db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
+    #     cursor = db.cursor()
+    #     cursor.execute("""CREATE TABLE IF NOT EXISTS Jogos (
+    #     name CHAR(30),
+    #     nota INT,
+    #     id CHAR(50),
+    #     srcImage CHAR(100),
+    #     informacao CHAR(200)
+    #     );""")  #deleta tabela sempre que executado
+    #
+    #     db.close()

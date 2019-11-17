@@ -7,6 +7,7 @@ import os
 
 bd = Database()
 # bd.criarTabela()
+indexGlobal = [0]
 
 app = Flask(__name__)
 upload_folder = 'static/upload'
@@ -63,13 +64,15 @@ def cadastrar():
     infoText = request.form['infoText']
     now = datetime.now() # verificar se id nao repete
     print(now)
+    print("index global")
+    print(indexGlobal[0])
     index = now.second
 
     img.save(os.path.join(upload_folder,img.filename))
 
     table.append(name)
     table.append(nota)
-    table.append(index)
+    table.append(index) # nao irá adicionar, pois é primary key
     table.append(src)
     table.append(infoText)
 
@@ -80,9 +83,11 @@ def cadastrar():
 @app.route('/admin/delete',methods=['POST']) #passar para bd, nao esta funcionando
 def delete():
     index = request.form['id']
+    print(index)
     bd.remove(index)
     
     return redirect('/admin')
+
 
 @app.route('/admin/update',methods=['POST']) #atualizar bd
 def update():
@@ -91,8 +96,11 @@ def update():
     nota = request.form['nota']
     infoText = request.form['infoText']
     table =[name,nota,infoText]
+    print(table)
+    print(index)
+
     bd.update(table,index)
-    
+
     return redirect('/admin')
 
 app.run(port=8080,debug=True)
