@@ -6,7 +6,7 @@ import os
 
 
 bd = Database()
-bd.criarTabela()
+# bd.criarTabela()
 
 app = Flask(__name__)
 upload_folder = 'static/upload'
@@ -35,9 +35,11 @@ def logout():
 
 @app.route('/admin',methods=['GET'])
 def admin():
-    jogos = bd.readTabela()
-    print(jogos)
-    return render_template('Admin.html',lista=jogos)
+    if val['access'] == True:
+        jogos = bd.readTabela()
+        return render_template('Admin.html',lista=jogos)
+    else:
+        return redirect('/')
 
 @app.route('/login/validation',methods=['POST'])
 def validation():

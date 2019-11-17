@@ -3,15 +3,20 @@ from Jogo import Jogo
 
 
 class Database:
-    def __init__(self):
-        pass
 
     def update(self,table,where):
+        aux=['name','nota','informacao']
         db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
         cursor = db.cursor()
-        cursor.execute('UPDATE Jogos SET name = "{}" WHERE id = {}'.format(table[0],where))
-        db.commit()
-        db.close()
+        try:
+            for i in range(0,len(aux)):
+                sql = 'UPDATE Jogos SET {} = "{}" WHERE id = {}'.format(aux[i],table[i],where)
+                print(sql)
+                cursor.execute(sql)
+            db.commit()
+            db.close()
+        except:
+            db.rollback()
 
     def readTabela(self):
         db = pymysql.connect("db4free.net","alvarozao","fe7924d3","testesbancao5")
@@ -43,19 +48,27 @@ class Database:
     def insertInto(self,table):
         db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
         cursor = db.cursor()
-        cursor.execute('INSERT INTO Jogos VALUES ("{}","{}","{}","{}","{}")'.format(table[0],table[1],table[2],table[3],table[4]))
-        db.commit()
-        db.close()
-        print("inseriu no bd")
+        try:
+            cursor.execute('INSERT INTO Jogos VALUES ("{}","{}","{}","{}","{}")'.format(table[0],table[1],table[2],table[3],table[4]))
+            db.commit()
+            db.close()
+            print("inseriu no bd")
+        except:
+            db.rollback()
+            print("ERRO NA INSERÇÃO")
 
     def remove(self,where):
         print(where)
         db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")
         cursor = db.cursor()
-        cursor.execute('DELETE FROM Jogos WHERE id = {};'.format(where))
-        db.commit()
-        db.close()
-        print("inseriu no bd")
+        try:
+            cursor.execute('DELETE FROM Jogos WHERE id = {};'.format(where))
+            db.commit()
+            db.close()
+            print("REMOVEU {} DO BANCO DE DADOS".format(where))
+        except:
+            print("ERRO NA REMOÇÃO")
+            db.rollback()
 
     def criarTabela(self):
         db = pymysql.connect("db4free.net", "alvarozao", "fe7924d3", "testesbancao5")

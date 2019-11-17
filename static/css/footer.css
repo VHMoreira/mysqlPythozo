@@ -3,11 +3,12 @@ footer{
     position: fixed;
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
     width: 93%;
+    height: 100px;
     z-index: 1;
-    margin-bottom: 20px;
+    background-color: rgb(29, 27, 27);
 }
 
 footer a{

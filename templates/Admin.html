@@ -18,13 +18,13 @@
     {% for i in lista %}
         <form class="item-grid" style="background: url({{i.src}}) no-repeat;background-size: cover;" method="POST">
             <div class="content">
-                <input type="text" name="id" value={{i.id}} style="display: none;">
+                <textarea type="text" name="id" style="display: none;">{{i.id}}</textarea>
                 {% if i.nota > 6 %}
                 <input type="number" class="nota" name="nota" style="color: rgb(57, 199, 57);" value={{i.nota}} />
                 {% else %}
                 <input type="number" class="nota" name="nota" style="color: rgb(192, 54, 54);" value={{i.nota}} />
                 {% endif %}
-                <input type="text" name="name" value={{i.name}}>
+                <textarea class='name' type="text" name="name">{{i.name}}</textarea>
                 <textarea name="infoText">{{i.infoText}}</textarea>
                 <div>
                     <button formaction="/admin/delete" type="submit">X</button>
